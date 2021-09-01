@@ -30,8 +30,8 @@ jobs:
     - name: Update version number
       run: |
         npm version ${{ github.event.inputs.version }} -m "Release v%s"
-        echo "npm_package_version=$(<out/version.txt)" >> $GITHUB_ENV
-        echo "release_body=$(<out/RELEASE.md)" >> $GITHUB_ENV
+        echo "npm_package_version=$(<./out/version.txt)" >> $GITHUB_ENV
+        echo "release_body=$(<./out/RELEASE.md)" >> $GITHUB_ENV
 
     - name: Check
       run: echo ${{env.package_version}} ${{env.release_body}}
