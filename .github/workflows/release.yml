@@ -31,12 +31,13 @@ jobs:
       run: |
         npm version ${{ github.event.inputs.version }} -m "Release v%s"
         echo "npm_package_version=$(<./out/version.txt)" >> $GITHUB_ENV
-        echo "release_body<<EOF" >> $GITHUB_ENV
-        echo "$(<./out/RELEASE.md)" >> $GITHUB_ENV
-        echo "EOF" >> $GITHUB_ENV
 
-    - name: Check
-      run: echo ${{env.package_version}} ${{env.release_body}}
+    - name: Push tag
+      run: git push && git push --tags
 
-    # - name: Push
-      # run: git push && git push --tags
+    - name: Create release
+      uses: ncipollo/release-action@v1
+      with:
+        bodyFile: "./out/RELEASE.md"
+        tag: ${{ env.npm_package_version }}
+        token: ${{ secrets.GITHUB_TOKEN }}
