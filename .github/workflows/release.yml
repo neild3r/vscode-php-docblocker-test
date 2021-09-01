@@ -3,8 +3,9 @@ on:
   workflow_dispatch:
     inputs:
         version:
-          description: 'Version number'
+          description: 'Version'
           required: true
+          default: 'patch'
 
 jobs:
   release:
@@ -22,3 +23,6 @@ jobs:
 
     - name: Install dependencies
       run: npm install
+
+    - name: Update version number
+      run: npm version ${INPUT_VERSION}
