@@ -28,7 +28,7 @@ jobs:
       run: npm install
 
     - name: Check PAT
-      run: npm run verify-pat --pat ${{ secrets.VSCE_PAT }} 
+      run: npm run verify-pat -- --pat ${{ secrets.VSCE_PAT }} 
 
     - name: Update version number
       run: |
