@@ -17,13 +17,13 @@ fs.readFile('CHANGELOG.md', 'utf8', function (err, data) {
         throw err;
     }
     var body = data.match(/## \[Unreleased\]\s+(.*?)\s*##/s);
-    fs.writeFile('out/RELEASE.md', body[1], 'utf8', function (err) {
+    fs.writeFile('./out/RELEASE.md', body[1], 'utf8', function (err) {
         if (err) {
             throw err;
         }
     });
 
-    fs.writeFile('out/version.txt', version, 'utf8', function (err) {
+    fs.writeFile('./out/version.txt', version, 'utf8', function (err) {
         if (err) {
             throw err;
         }
