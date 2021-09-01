@@ -35,6 +35,9 @@ jobs:
         npm version ${{ github.event.inputs.version }} -m "Release v%s"
         echo "npm_package_version=$(<./out/version.txt)" >> $GITHUB_ENV
 
+    - name: Run tests
+      run: xvfb-run -a npm test
+
     - name: Push tag
       run: git push && git push --tags
 
