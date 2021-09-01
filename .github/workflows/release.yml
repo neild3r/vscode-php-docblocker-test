@@ -26,3 +26,6 @@ jobs:
 
     - name: Update version number
       run: npm version ${INPUT_VERSION}
+
+    - name: Push
+      run: git push
