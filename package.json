@@ -108,6 +108,7 @@
     }
   },
   "scripts": {
+    "verify-pat": "vsce verify-pat",
     "vscode:prepublish": "npm run -S esbuild-base -- --minify",
     "lint": "tslint -p ./",
     "build": "npm run -S esbuild-base -- --sourcemap",
