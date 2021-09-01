@@ -28,7 +28,11 @@ fs.readFile('CHANGELOG.md', 'utf8', function (err, data) {
         }
     });
 
-    fs.writeFile('./out/version.txt', version, 'utf8', function (err) {
+    let textVersion = version.match(/\d+\.\d+\.\d+/)
+        ? "v" + version
+        : version
+
+    fs.writeFile('./out/version.txt', textVersion, 'utf8', function (err) {
         if (err) {
             throw err;
         }
