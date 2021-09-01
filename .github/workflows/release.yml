@@ -9,7 +9,7 @@ on:
 
 jobs:
   release:
-    name: Release (${{ github.event.inputs.version }})
+    name: Release
     runs-on: ubuntu-latest
     steps:
 
@@ -30,5 +30,8 @@ jobs:
     - name: Update version number
       run: npm version ${{ github.event.inputs.version }} -m "Release v%s"
 
-    - name: Push
-      run: git push && git push --tags
+    - name: Check
+      run: echo $RELEASE_BODY $NPM_PACKAGE_VERSION
+
+    # - name: Push
+      # run: git push && git push --tags
