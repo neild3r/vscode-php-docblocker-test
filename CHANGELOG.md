@@ -3,6 +3,8 @@
 All notable changes to the "php-docblocker" extension will be documented in this file.
 
 ## [Unreleased]
+
+## [2.3.3] - 2021-09-01
 - Add support for PHP8 union types in function params - Thanks @tianyiw2013
 - Add support for PHP8 union types in function return types - Thanks @tianyiw2013
 - Add support for PHP8 union types in class properties - Thanks @tianyiw2013
@@ -143,7 +145,8 @@ All notable changes to the "php-docblocker" extension will be documented in this
 ## 0.1.0 - 2017-03-12
 - Initial release
 
-[Unreleased]: https://github.com/neild3r/vscode-php-docblocker/compare/v2.3.2...HEAD
+[Unreleased]: https://github.com/neild3r/vscode-php-docblocker/compare/v2.3.3...HEAD
+[2.3.3]: https://github.com/neild3r/vscode-php-docblocker/compare/v2.3.2...v2.3.3
 [2.3.2]: https://github.com/neild3r/vscode-php-docblocker/compare/v2.3.1...v2.3.2
 [2.3.1]: https://github.com/neild3r/vscode-php-docblocker/compare/v2.3.0...v2.3.1
 [2.3.0]: https://github.com/neild3r/vscode-php-docblocker/compare/v2.2.3...v2.3.0
