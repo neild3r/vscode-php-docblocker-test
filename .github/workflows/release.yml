@@ -38,12 +38,21 @@ jobs:
     - name: Run tests
       run: xvfb-run -a npm test
 
+    - name: Package
+      run: npm run package
+
     - name: Push tag
       run: git push && git push --tags
 
     - name: Create release
       uses: ncipollo/release-action@v1
       with:
+        artifacts: ./out/package.vsix
         bodyFile: "./out/RELEASE.md"
         tag: ${{ env.npm_package_version }}
         token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Publish
+      run: npm run deploy -- --packagePath ./out/package.vsix
+      env:
+        VSCE_PAT: ${{ secrets.VSCE_PAT }}

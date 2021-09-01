@@ -118,6 +118,7 @@
     "test": "node ./out/test/runTest.js",
     "web": "npm run build && vscode-test-web --browserType=webkit --extensionDevelopmentPath=./",
     "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/src/extension.js --external:vscode --format=cjs --platform=node",
+    "package": "vsce package --out ./out/package.vsix",
     "deploy": "vsce publish"
   },
   "devDependencies": {
