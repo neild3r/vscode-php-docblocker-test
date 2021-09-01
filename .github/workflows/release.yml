@@ -28,7 +28,10 @@ jobs:
       run: npm install
 
     - name: Update version number
-      run: npm version ${{ github.event.inputs.version }} -m "Release v%s"
+      run: |
+        npm version ${{ github.event.inputs.version }} -m "Release v%s"
+        echo "::set-env name=RELEASE_BODY::$RELEASE_BODY"
+        echo "::set-env name=NPM_PACKAGE_VERSION::$NPM_PACKAGE_VERSION"
 
     - name: Check
       run: echo $RELEASE_BODY $NPM_PACKAGE_VERSION
