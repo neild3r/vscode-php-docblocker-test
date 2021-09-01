@@ -1,9 +1,10 @@
 name: Release
-on: workflow_dispatch
-  inputs:
-      version:
-        description: 'Version number'
-        required: true
+on:
+  workflow_dispatch:
+    inputs:
+        version:
+          description: 'Version number'
+          required: true
 
 jobs:
   release:
