@@ -1,9 +1,13 @@
 name: Release
 on: workflow_dispatch
+  inputs:
+      version:
+        description: 'Version number'
+        required: true
 
 jobs:
   release:
-    name: Test
+    name: Release
     runs-on: ubuntu-latest
     steps:
 
