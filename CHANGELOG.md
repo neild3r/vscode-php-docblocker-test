@@ -3,6 +3,10 @@
 All notable changes to the "php-docblocker" extension will be documented in this file.
 
 ## [Unreleased]
+- Add support for PHP8 union types in function params - Thanks @tianyiw2013
+- Add support for PHP8 union types in function return types - Thanks @tianyiw2013
+- Add support for PHP8 union types in class properties - Thanks @tianyiw2013
+- Switched build checks system to GitHub actions
 
 ## [2.3.3] - 2021-09-01
 - Add support for PHP8 union types in function params - Thanks @tianyiw2013
