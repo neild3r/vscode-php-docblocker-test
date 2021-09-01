@@ -2,7 +2,14 @@
 
 const fs = require('fs');
 
-const version = process.env.npm_package_version;
+const version = process.env.npm_package_version
+    ? process.env.npm_package_version
+    : process.argv[2];
+
+if (!version) {
+    throw "No version defined";
+}
+
 let today = (new Date()).toISOString().split('T')[0];
 
 fs.readFile('CHANGELOG.md', 'utf8', function (err, data) {
@@ -10,7 +17,17 @@ fs.readFile('CHANGELOG.md', 'utf8', function (err, data) {
         throw err;
     }
     var body = data.match(/## \[Unreleased\]\s+(.*?)\s*##/s);
-    process.env.release_body = body;
+    fs.writeFile('out/RELEASE.md', body[1], 'utf8', function (err) {
+        if (err) {
+            throw err;
+        }
+    });
+
+    fs.writeFile('out/version.txt', version, 'utf8', function (err) {
+        if (err) {
+            throw err;
+        }
+    });
 
     var result = data.replace(/## \[Unreleased\]/, `## [Unreleased]\n\n## [${version}] - ${today}`);
     result = result.replace(
