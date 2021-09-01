@@ -25,7 +25,7 @@ jobs:
       run: npm install
 
     - name: Update version number
-      run: npm version ${INPUT_VERSION}
+      run: npm version ${{ github.event.inputs.version }}
 
     - name: Push
       run: git push
