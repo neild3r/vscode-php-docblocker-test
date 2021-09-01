@@ -27,6 +27,9 @@ jobs:
     - name: Install dependencies
       run: npm install
 
+    - name: Check PAT
+      run: npm run vsce verify-pat --pat ${{ secrets.VSCE_PAT }} 
+
     - name: Update version number
       run: |
         npm version ${{ github.event.inputs.version }} -m "Release v%s"
