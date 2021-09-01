@@ -27,7 +27,7 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Check PAT
+    - name: Verify PAT
       run: npm run verify-pat -- --pat ${{ secrets.VSCE_PAT }} 
 
     - name: Update version number
@@ -53,6 +53,6 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Publish
-      run: npm run deploy -- --packagePath ./out/package.vsix
+      run: npm run deploy
       env:
         VSCE_PAT: ${{ secrets.VSCE_PAT }}

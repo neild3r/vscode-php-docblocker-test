@@ -119,7 +119,8 @@
     "web": "npm run build && vscode-test-web --browserType=webkit --extensionDevelopmentPath=./",
     "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/src/extension.js --external:vscode --format=cjs --platform=node",
     "package": "vsce package --out ./out/package.vsix",
-    "deploy": "vsce publish"
+    "publish": "vsce publish --packagePath ./out/package.vsix",
+    "deploy": "npm run package && npm run publish"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.6",
