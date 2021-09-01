@@ -31,7 +31,7 @@ jobs:
       run: |
         npm version ${{ github.event.inputs.version }} -m "Release v%s"
         echo "npm_package_version=$npm_package_version" >> $GITHUB_ENV
-        ehco "release_body=$release_body" >> $GITHUB_ENV
+        echo "release_body=$release_body" >> $GITHUB_ENV
 
     - name: Check
       run: echo env.package_version env.release_body
