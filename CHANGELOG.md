@@ -3,6 +3,8 @@
 All notable changes to the "php-docblocker" extension will be documented in this file.
 
 ## [Unreleased]
+- Test release notes here
+- Test blah blah blah
 
 ## [2.3.5] - 2021-09-01
 
