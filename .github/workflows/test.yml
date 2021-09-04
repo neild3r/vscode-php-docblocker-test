@@ -18,11 +18,11 @@ jobs:
     - name: Cache node modules
       uses: actions/cache@v2
       env:
-        cache-name: npm
+        cache-name: node_modules
       with:
-        path: ~/.npm
+        path: ~/node_modules
         key: ${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
-        restore-keys: npm-
+        restore-keys: ${{ env.cache-name }}-
 
     - name: Install dependencies
       run: npm install
