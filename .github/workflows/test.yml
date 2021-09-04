@@ -18,9 +18,9 @@ jobs:
     - name: Cache node modules
       uses: actions/cache@v2
       env:
-        cache-name: node_modules
+        cache-name: vscode
       with:
-        path: ~/node_modules
+        path: ~/.vscode-test/
         key: ${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
         restore-keys: ${{ env.cache-name }}-
 
