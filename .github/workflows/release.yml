@@ -51,13 +51,13 @@ jobs:
     #   run: npm run package
 
     - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
-        with:
-            token: ${{ secrets.BOT_GITHUB_PAT }}
-            commit-message: Release ${{ env.npm_package_version }}
-            title: Release ${{ env.npm_package_version }}
-            branch: ${{ env.npm_package_version }}-pre{{ github.run_number }}
-            body: ${{ env.release_notes }}
+      uses: peter-evans/create-pull-request@v3
+      with:
+          token: ${{ secrets.BOT_GITHUB_PAT }}
+          commit-message: Release ${{ env.npm_package_version }}
+          title: Release ${{ env.npm_package_version }}
+          branch: ${{ env.npm_package_version }}-pre{{ github.run_number }}
+          body: ${{ env.release_notes }}
 
     # - name: Create release
     #   uses: ncipollo/release-action@v1
