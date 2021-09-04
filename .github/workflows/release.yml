@@ -46,9 +46,8 @@ jobs:
         echo "$(<./out/RELEASE.md)" >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
 
-    - name: Create branch
+    - name: Stage changes
       run: |
-        git checkout -b ${{ env.npm_package_version }}-pre${{ github.run_number }}
         git add CHANGELOG.md package.json package-lock.json
         git commit -m "Release ${{ env.npm_package_version }}"
 
@@ -63,7 +62,6 @@ jobs:
           token: ${{ secrets.BOT_GITHUB_PAT }}
           title: Release ${{ env.npm_package_version }}
           branch: ${{ env.npm_package_version }}-pre${{ github.run_number }}
-          base: master
           body: ${{ env.release_notes }}
 
     # - name: Create release
