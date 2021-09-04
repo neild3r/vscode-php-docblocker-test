@@ -42,8 +42,8 @@ jobs:
       run: |
         npm version ${{ github.event.inputs.version }}
         echo "npm_package_version=$(<./out/version.txt)" >> $GITHUB_ENV
-        echo "release_notes=<<EOF" >> $GITHUB_ENV
-        echo "$(<./out/version.txt)" >> $GITHUB_ENV
+        echo "release_notes<<EOF" >> $GITHUB_ENV
+        echo "$(<./out/RELEASE.md)" >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
         git add CHANGELOG.md package.json package-lock.json
 
