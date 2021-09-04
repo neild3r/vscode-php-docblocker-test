@@ -53,10 +53,12 @@ jobs:
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v3
       with:
+          username: php-docblocker
+          repository: ${{ github.repository }}
           token: ${{ secrets.BOT_GITHUB_PAT }}
           commit-message: Release ${{ env.npm_package_version }}
           title: Release ${{ env.npm_package_version }}
-          branch: ${{ env.npm_package_version }}-pre{{ github.run_number }}
+          branch: ${{ env.npm_package_version }}-pre${{ github.run_number }}
           body: ${{ env.release_notes }}
 
     # - name: Create release
