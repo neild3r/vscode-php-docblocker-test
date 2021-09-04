@@ -15,14 +15,13 @@ jobs:
       with:
         node-version: 14.x
 
-    - name: Cache node modules
+    - name: Cache vscode binary
       uses: actions/cache@v2
       env:
         cache-name: vscode
       with:
         path: ~/.vscode-test/
         key: ${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
-        restore-keys: ${{ env.cache-name }}-
 
     - name: Install dependencies
       run: npm install
