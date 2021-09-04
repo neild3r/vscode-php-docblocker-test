@@ -16,55 +16,48 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - run: |
-        git config user.name "github-actions"
-        git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+        git config user.name "PHP DocBlocker"
+        git config user.email php-docblocker@brayfield.co.uk
 
     - name: Install Node.js
       uses: actions/setup-node@v1
       with:
         node-version: 14.x
 
+    - name: Cache vscode binary
+      uses: actions/cache@v2
+      env:
+        cache-name: vscode
+      with:
+        path: ~/.vscode-test/
+        key: ${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
+
     - name: Install dependencies
       run: npm install
 
-    - name: Verify PAT
-      run: npm run verify-pat -- --pat ${{ secrets.VSCE_PAT }}
+    # - name: Verify PAT
+    #   run: npm run verify-pat -- --pat ${{ secrets.VSCE_PAT }}
 
     - name: Update version number
       run: |
-        npm version ${{ github.event.inputs.version }} -m "Release v%s"
+        npm version ${{ github.event.inputs.version }}
         echo "npm_package_version=$(<./out/version.txt)" >> $GITHUB_ENV
+        echo "release_notes=<<EOF" >> $GITHUB_ENV
+        echo "$(<./out/version.txt)" >> $GITHUB_ENV
+        echo "EOF" >> $GITHUB_ENV
+        git add CHANGELOG.md package.json package-lock.json
 
-    - name: Package
-      run: npm run package
+    # - name: Package
+    #   run: npm run package
 
-    - name: Push tag
-      run: |
-        git checkout -b ${{ env.npm_package_version }}-pre
-        git push -u origin ${{ env.npm_package_version }}-pre
-        git push --tags
-
-    # - name: Wait for tests to succeed
-    #   uses: lewagon/wait-on-check-action@v1.0.0
-    #   with:
-    #     ref: ${{ env.npm_package_version }}-pre
-    #     check-name: Test
-    #     repo-token: ${{ secrets.GITHUB_TOKEN }}
-    #     wait-interval: 20
-
-    # - name: Wait for coverage to succeed
-    #   uses: lewagon/wait-on-check-action@v1.0.0
-    #   with:
-    #     ref: ${{ env.npm_package_version }}-pre
-    #     check-name: Coveralls
-    #     repo-token: ${{ secrets.GITHUB_TOKEN }}
-    #     wait-interval: 20
-
-    - name: Push tag to master
-      run: |
-        git checkout master
-        git push
-        git push --tags
+    - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+            token: ${{ secrets.BOT_GITHUB_PAT }}
+            commit-message: Release ${{ env.npm_package_version }}
+            title: Release ${{ env.npm_package_version }}
+            branch: ${{ env.npm_package_version }}-pre{{ github.run_number }}
+            body: ${{ env.release_notes }}
 
     # - name: Create release
     #   uses: ncipollo/release-action@v1
