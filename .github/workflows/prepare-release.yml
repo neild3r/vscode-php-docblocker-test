@@ -1,4 +1,4 @@
-name: Release
+name: Prepare Release
 on:
   workflow_dispatch:
     inputs:
@@ -8,8 +8,8 @@ on:
           default: 'patch'
 
 jobs:
-  release:
-    name: Release
+  prepare-release:
+    name: Prepare Release
     runs-on: ubuntu-latest
     steps:
 
