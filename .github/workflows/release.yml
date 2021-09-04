@@ -63,6 +63,7 @@ jobs:
           token: ${{ secrets.BOT_GITHUB_PAT }}
           title: Release ${{ env.npm_package_version }}
           branch: ${{ env.npm_package_version }}-pre${{ github.run_number }}
+          base: master
           body: ${{ env.release_notes }}
 
     # - name: Create release
