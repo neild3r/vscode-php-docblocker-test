@@ -63,6 +63,7 @@ jobs:
           title: Release ${{ env.npm_package_version }}
           branch: ${{ env.npm_package_version }}-pre${{ github.run_number }}
           body: ${{ env.release_notes }}
+          labels: release candidate
 
     # - name: Create release
     #   uses: ncipollo/release-action@v1
