@@ -16,7 +16,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - run: |
-        git config user.name "PHP DocBlocker"
+        git config user.name "php-docblocker"
         git config user.email php-docblocker@brayfield.co.uk
 
     - name: Install Node.js
@@ -45,7 +45,9 @@ jobs:
         echo "release_notes<<EOF" >> $GITHUB_ENV
         echo "$(<./out/RELEASE.md)" >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
+        git checkout -b ${{ env.npm_package_version }}-pre${{ github.run_number }}
         git add CHANGELOG.md package.json package-lock.json
+        git commit -m "Release ${{ env.npm_package_version }}"
 
     # - name: Package
     #   run: npm run package
@@ -53,10 +55,9 @@ jobs:
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v3
       with:
-          username: php-docblocker
-          repository: ${{ github.repository }}
+          author: php-docblocker <php-docblocker@brayfield.co.uk>
+          committer: php-docblocker <php-docblocker@brayfield.co.uk>
           token: ${{ secrets.BOT_GITHUB_PAT }}
-          commit-message: Release ${{ env.npm_package_version }}
           title: Release ${{ env.npm_package_version }}
           branch: ${{ env.npm_package_version }}-pre${{ github.run_number }}
           body: ${{ env.release_notes }}
