@@ -44,21 +44,21 @@ jobs:
         git push -u origin ${{ env.npm_package_version }}-pre
         git push --tags
 
-    - name: Wait for tests to succeed
-      uses: lewagon/wait-on-check-action@v1.0.0
-      with:
-        ref: ${{ env.npm_package_version }}-pre
-        check-name: Test
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        wait-interval: 20
+    # - name: Wait for tests to succeed
+    #   uses: lewagon/wait-on-check-action@v1.0.0
+    #   with:
+    #     ref: ${{ env.npm_package_version }}-pre
+    #     check-name: Test
+    #     repo-token: ${{ secrets.GITHUB_TOKEN }}
+    #     wait-interval: 20
 
-    - name: Wait for coverage to succeed
-      uses: lewagon/wait-on-check-action@v1.0.0
-      with:
-        ref: ${{ env.npm_package_version }}-pre
-        check-name: Coveralls
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        wait-interval: 20
+    # - name: Wait for coverage to succeed
+    #   uses: lewagon/wait-on-check-action@v1.0.0
+    #   with:
+    #     ref: ${{ env.npm_package_version }}-pre
+    #     check-name: Coveralls
+    #     repo-token: ${{ secrets.GITHUB_TOKEN }}
+    #     wait-interval: 20
 
     - name: Push tag to master
       run: |
