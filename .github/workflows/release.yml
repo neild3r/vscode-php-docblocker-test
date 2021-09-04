@@ -45,6 +45,9 @@ jobs:
         echo "release_notes<<EOF" >> $GITHUB_ENV
         echo "$(<./out/RELEASE.md)" >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
+
+    - name: Create branch
+      run: |
         git checkout -b ${{ env.npm_package_version }}-pre${{ github.run_number }}
         git add CHANGELOG.md package.json package-lock.json
         git commit -m "Release ${{ env.npm_package_version }}"
