@@ -3,6 +3,8 @@
 All notable changes to the "php-docblocker" extension will be documented in this file.
 
 ## [Unreleased]
+
+## [2.3.9] - 2021-09-04
 - Add caching of node modules folder
 
 ## [2.3.8] - 2021-09-01
@@ -162,7 +164,8 @@ All notable changes to the "php-docblocker" extension will be documented in this
 ## 0.1.0 - 2017-03-12
 - Initial release
 
-[Unreleased]: https://github.com/neild3r/vscode-php-docblocker/compare/v2.3.8...HEAD
+[Unreleased]: https://github.com/neild3r/vscode-php-docblocker/compare/v2.3.9...HEAD
+[2.3.9]: https://github.com/neild3r/vscode-php-docblocker/compare/v2.3.8...v2.3.9
 [2.3.8]: https://github.com/neild3r/vscode-php-docblocker/compare/v2.3.7...v2.3.8
 [2.3.7]: https://github.com/neild3r/vscode-php-docblocker/compare/v2.3.6...v2.3.7
 [2.3.6]: https://github.com/neild3r/vscode-php-docblocker/compare/v2.3.5...v2.3.6
