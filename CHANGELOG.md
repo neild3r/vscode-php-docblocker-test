@@ -3,6 +3,7 @@
 All notable changes to the "php-docblocker" extension will be documented in this file.
 
 ## [Unreleased]
+- Add caching of node modules folder
 
 ## [2.3.8] - 2021-09-01
 
