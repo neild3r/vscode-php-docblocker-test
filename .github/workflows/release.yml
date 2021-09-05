@@ -12,5 +12,5 @@ jobs:
 
     - name: Output
       run: |
-      echo PR #${{ github.event.number }} has been merged
-      echo ${{ toJson(github.event) }}
+        echo "PR #${{ github.event.number }} has been merged"
+        echo "${{ toJson(github.event) }}"
