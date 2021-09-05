@@ -4,6 +4,8 @@ All notable changes to the "php-docblocker" extension will be documented in this
 
 ## [Unreleased]
 
+## [2.3.11] - 2021-09-05
+
 ## [2.3.10] - 2021-09-05
 - Add should to list of bool return type functions - Thanks @ImClarky
 - Fix issue where functions named with a bool return prefix were incorrectly given bool return type - Thanks @ImClarky
@@ -169,7 +171,8 @@ All notable changes to the "php-docblocker" extension will be documented in this
 ## 0.1.0 - 2017-03-12
 - Initial release
 
-[Unreleased]: https://github.com/neild3r/vscode-php-docblocker/compare/v2.3.10...HEAD
+[Unreleased]: https://github.com/neild3r/vscode-php-docblocker/compare/v2.3.11...HEAD
+[2.3.11]: https://github.com/neild3r/vscode-php-docblocker/compare/v2.3.10...v2.3.11
 [2.3.10]: https://github.com/neild3r/vscode-php-docblocker/compare/v2.3.9...v2.3.10
 [2.3.9]: https://github.com/neild3r/vscode-php-docblocker/compare/v2.3.8...v2.3.9
 [2.3.8]: https://github.com/neild3r/vscode-php-docblocker/compare/v2.3.7...v2.3.8
