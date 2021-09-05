@@ -43,9 +43,8 @@ jobs:
         echo "$(<./out/RELEASE.md)" >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
 
-    - name: Set run suffix
-      if: github.run_number > 1
-      run: echo "run_suffix=-${{ github.run_number }}" >> $GITHUB_ENV
+    - name: Check branch
+      run: !git rev-parse --verify --quiet ${{ env.npm_package_version }}
 
     - name: Stage changes
       run: |
@@ -59,6 +58,6 @@ jobs:
           committer: php-docblocker <php-docblocker@brayfield.co.uk>
           token: ${{ secrets.BOT_GITHUB_PAT }}
           title: ${{ env.npm_package_version }}
-          branch: releases/${{ env.npm_package_version }}${{ env.run_suffix }}
+          branch: releases/${{ env.npm_package_version }}
           body: ${{ env.release_notes }}
           labels: release candidate
