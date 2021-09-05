@@ -10,6 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - run: |
+    - name: Debug
+      uses: hmarr/debug-action@v2
+
+    - name: Output
+      run: |
       echo PR #${{ github.event.number }} has been merged
-      echo Logged in as #${{ github.event.pull_request.user.login }}
+      # echo Logged in as ${{ github.event.pull_request.user.login }}
