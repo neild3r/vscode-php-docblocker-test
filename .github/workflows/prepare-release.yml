@@ -35,9 +35,6 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    # - name: Verify PAT
-    #   run: npm run verify-pat -- --pat ${{ secrets.VSCE_PAT }}
-
     - name: Update version number
       run: |
         npm version ${{ github.event.inputs.version }}
@@ -51,9 +48,6 @@ jobs:
         git add CHANGELOG.md package.json package-lock.json
         git commit -m "Release ${{ env.npm_package_version }}"
 
-    # - name: Package
-    #   run: npm run package
-
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v3
       with:
@@ -64,16 +58,3 @@ jobs:
           branch: ${{ env.npm_package_version }}-pre${{ github.run_number }}
           body: ${{ env.release_notes }}
           labels: release candidate
-
-    # - name: Create release
-    #   uses: ncipollo/release-action@v1
-    #   with:
-    #     artifacts: ./out/package.vsix
-    #     bodyFile: "./out/RELEASE.md"
-    #     tag: ${{ env.npm_package_version }}
-    #     token: ${{ secrets.GITHUB_TOKEN }}
-
-    # - name: Publish
-    #   run: npm run publish
-    #   env:
-    #     VSCE_PAT: ${{ secrets.VSCE_PAT }}

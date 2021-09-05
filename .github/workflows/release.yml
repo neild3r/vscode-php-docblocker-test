@@ -7,10 +7,47 @@ on:
 jobs:
   merged:
     # if: github.event.pull_request.merged == true
+    if: |
+      github.event.pull_request.user.login == 'php-docblocker'
+      && contains(github.event.pull_request.labels.*.name, 'release candidate')
     runs-on: ubuntu-latest
     steps:
 
-    - name: Output
-      run: |
-        echo "PR #${{ github.event.number }} has been merged"
-        echo "${{ toJson(github.event.pull_request.user) }}"
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+
+    - name: Cache vscode binary
+      uses: actions/cache@v2
+      env:
+        cache-name: vscode
+      with:
+        path: ~/.vscode-test/
+        key: ${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Verify PAT
+      run: npm run verify-pat -- --pat ${{ secrets.VSCE_PAT }}
+
+    - name: Package
+      run: npm run package
+
+    # - name: Create release
+    #   uses: ncipollo/release-action@v1
+    #   with:
+    #     artifacts: ./out/package.vsix
+    #     body: ${{ github.event.pull_request.body }}
+    #     tag: ${{ env.npm_package_version }}
+    #     token: ${{ secrets.GITHUB_TOKEN }}
+
+    # - name: Publish
+    #   run: npm run publish
+    #   env:
+    #     VSCE_PAT: ${{ secrets.VSCE_PAT }}
+
