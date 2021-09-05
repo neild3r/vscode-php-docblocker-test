@@ -3,6 +3,9 @@
 All notable changes to the "php-docblocker" extension will be documented in this file.
 
 ## [Unreleased]
+- Add should to list of bool return type functions - Thanks @ImClarky
+- Fix issue where functions named with a bool return prefix were incorrectly given bool return type - Thanks @ImClarky
+- Fix issue with snake case class names in PHP7 return types - Thanks @rmccue
 
 ## [2.3.9] - 2021-09-04
 - Add caching of node modules folder - Thanks @neild3r
