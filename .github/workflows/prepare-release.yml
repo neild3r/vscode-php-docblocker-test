@@ -44,7 +44,7 @@ jobs:
         echo "EOF" >> $GITHUB_ENV
 
     - name: Check branch
-      run: !git rev-parse --verify --quiet ${{ env.npm_package_version }}
+      run: ! git rev-parse --verify --quiet ${{ env.npm_package_version }}
 
     - name: Stage changes
       run: |
