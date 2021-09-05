@@ -6,9 +6,9 @@ on:
 
 jobs:
   merged:
-    # if: github.event.pull_request.merged == true
     if: |
-      github.event.pull_request.user.login == 'php-docblocker'
+      github.event.pull_request.merged == true
+      && github.event.pull_request.user.login == 'php-docblocker'
       && contains(github.event.pull_request.labels.*.name, 'release candidate')
     runs-on: ubuntu-latest
     steps:
@@ -38,16 +38,16 @@ jobs:
     - name: Package
       run: npm run package
 
-    # - name: Create release
-    #   uses: ncipollo/release-action@v1
-    #   with:
-    #     artifacts: ./out/package.vsix
-    #     body: ${{ github.event.pull_request.body }}
-    #     tag: ${{ env.npm_package_version }}
-    #     token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Create release
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: ./out/package.vsix
+        body: ${{ github.event.pull_request.body }}
+        tag: ${{ env.npm_package_version }}
+        token: ${{ secrets.GITHUB_TOKEN }}
 
-    # - name: Publish
-    #   run: npm run publish
-    #   env:
-    #     VSCE_PAT: ${{ secrets.VSCE_PAT }}
+    - name: Publish
+      run: npm run publish
+      env:
+        VSCE_PAT: ${{ secrets.VSCE_PAT }}
 
