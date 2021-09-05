@@ -54,7 +54,7 @@ jobs:
           author: php-docblocker <php-docblocker@brayfield.co.uk>
           committer: php-docblocker <php-docblocker@brayfield.co.uk>
           token: ${{ secrets.BOT_GITHUB_PAT }}
-          title: Release ${{ env.npm_package_version }}
+          title: ${{ env.npm_package_version }}
           branch: ${{ env.npm_package_version }}-pre${{ github.run_number }}
           body: ${{ env.release_notes }}
           labels: release candidate
