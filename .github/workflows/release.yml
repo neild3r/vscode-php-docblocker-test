@@ -38,13 +38,17 @@ jobs:
     - name: Package
       run: npm run package
 
+    - name: Extract version
+      id: extract_version
+      uses: Saionaro/extract-package-version@v1.0.6
+
     - name: Create release
       uses: ncipollo/release-action@v1
       with:
         name: ${{ github.event.pull_request.title }}
         artifacts: ./out/package.vsix
         body: ${{ github.event.pull_request.body }}
-        tag: ${{ env.npm_package_version }}
+        tag: v${{ steps.extract_version.outputs.version }}
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Publish
