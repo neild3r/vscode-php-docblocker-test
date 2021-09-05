@@ -1,0 +1,15 @@
+name: Release
+
+on:
+  pull_request:
+    types: [ closed ]
+
+jobs:
+  merged:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+
+    - run: |
+      echo PR #${{ github.event.number }} has been merged
+      echo Logged in as #${{ github.event.pull_request.user.login }}
