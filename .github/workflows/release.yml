@@ -41,6 +41,7 @@ jobs:
     - name: Create release
       uses: ncipollo/release-action@v1
       with:
+        name: ${{ github.event.pull_request.title }}
         artifacts: ./out/package.vsix
         body: ${{ github.event.pull_request.body }}
         tag: ${{ env.npm_package_version }}
