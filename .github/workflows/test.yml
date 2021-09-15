@@ -2,30 +2,17 @@ name: Test Suite
 on: [push, pull_request]
 
 jobs:
+  setup:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup
+      uses: ./.github/actions/setup
+
   test:
     name: Test
     runs-on: ubuntu-latest
     steps:
-
-    - name: Checkout
-      uses: actions/checkout@v2
-
-    - name: Install Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: 14.x
-
-    - name: Cache vscode binary
-      uses: actions/cache@v2
-      env:
-        cache-name: vscode
-      with:
-        path: ~/.vscode-test/
-        key: ${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
-
-    - name: Install dependencies
-      run: npm install
-
     - name: Run tests
       run: xvfb-run -a npm test
 
