@@ -3,6 +3,12 @@
 All notable changes to the "php-docblocker" extension will be documented in this file.
 
 ## [Unreleased]
+### Added
+- A presentation to the D3R Team on GitHub workflows
+### Updated
+- The D3R Team on how we can use GitHub actions
+### Removed
+- Anxiety about GitHub actions
 
 ## [2.4.0] - 2021-09-15
 
