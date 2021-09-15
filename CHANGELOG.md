@@ -3,12 +3,9 @@
 All notable changes to the "php-docblocker" extension will be documented in this file.
 
 ## [Unreleased]
-### Added
-- A presentation to the D3R Team on GitHub workflows
-### Updated
-- The D3R Team on how we can use GitHub actions
-### Removed
-- Anxiety about GitHub actions
+- Add should to list of bool return type functions - Thanks @ImClarky
+- Fix issue where functions named with a bool return prefix were incorrectly given bool return type - Thanks @ImClarky
+- Fix issue with snake case class names in PHP7 return types - Thanks @rmccue
 
 ## [2.4.1] - 2021-09-15
 ### Added
