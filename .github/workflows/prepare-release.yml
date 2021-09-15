@@ -23,17 +23,20 @@ jobs:
       run: npm run verify-pat -- --pat ${{ secrets.VSCE_PAT }}
 
     - name: Update version number
+      id: version
       run: |
         npm version ${{ github.event.inputs.version }}
-        echo "npm_package_version=$(<./out/version.txt)" >> $GITHUB_ENV
-        echo "release_notes<<EOF" >> $GITHUB_ENV
-        echo "$(<./out/RELEASE.md)" >> $GITHUB_ENV
-        echo "EOF" >> $GITHUB_ENV
+        echo "::set-output name=npm_package_version::$(<./out/version.txt)"
+        RELEASE="$(<./out/RELEASE.md)"
+        RELEASE="${RELEASE//'%'/'%25'}"
+        RELEASE="${RELEASE//$'\n'/'%0A'}"
+        RELEASE="${RELEASE//$'\r'/'%0D'}"
+        echo "::set-output name=release_notes::$RELEASE"
 
     - name: Stage changes
       run: |
         git add CHANGELOG.md package.json package-lock.json
-        git commit -m "Release ${{ env.npm_package_version }}"
+        git commit -m "Release ${{ steps.version.outputs.npm_package_version }}"
 
     - name: Create Pull Request
       id: create-pull-request
@@ -42,9 +45,9 @@ jobs:
           author: php-docblocker <php-docblocker@brayfield.co.uk>
           committer: php-docblocker <php-docblocker@brayfield.co.uk>
           token: ${{ secrets.BOT_GITHUB_PAT }}
-          title: ${{ env.npm_package_version }}
-          branch: releases/${{ env.npm_package_version }}
-          body: ${{ env.release_notes }}
+          title: ${{ steps.version.outputs.npm_package_version }}
+          branch: releases/${{ steps.version.outputs.npm_package_version }}
+          body: ${{ steps.version.outputs.release_notes }}
           labels: release candidate
 
     - name: Enable Pull Request Automerge
