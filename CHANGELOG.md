@@ -3,6 +3,8 @@
 All notable changes to the "php-docblocker" extension will be documented in this file.
 
 ## [Unreleased]
+
+## [2.4.6] - 2021-09-15
 ### Added
 - A presentation to the D3R Team on GitHub workflows
 ### Updated
@@ -218,7 +220,8 @@ All notable changes to the "php-docblocker" extension will be documented in this
 ## 0.1.0 - 2017-03-12
 - Initial release
 
-[Unreleased]: https://github.com/neild3r/vscode-php-docblocker/compare/v2.4.5...HEAD
+[Unreleased]: https://github.com/neild3r/vscode-php-docblocker/compare/v2.4.6...HEAD
+[2.4.6]: https://github.com/neild3r/vscode-php-docblocker/compare/v2.4.5...v2.4.6
 [2.4.5]: https://github.com/neild3r/vscode-php-docblocker/compare/v2.4.4...v2.4.5
 [2.4.4]: https://github.com/neild3r/vscode-php-docblocker/compare/v2.4.3...v2.4.4
 [2.4.3]: https://github.com/neild3r/vscode-php-docblocker/compare/v2.4.2...v2.4.3
