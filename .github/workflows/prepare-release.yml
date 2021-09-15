@@ -29,6 +29,7 @@ jobs:
         echo "::set-output name=npm_package_version::$(<./out/version.txt)"
         RELEASE="$(<./out/RELEASE.md)"
         RELEASE="${RELEASE//'%'/'%25'}"
+        RELEASE="${RELEASE//'#'/'%23'}"
         RELEASE="${RELEASE//$'\n'/'%0A'}"
         RELEASE="${RELEASE//$'\r'/'%0D'}"
         echo "::set-output name=release_notes::$RELEASE"
