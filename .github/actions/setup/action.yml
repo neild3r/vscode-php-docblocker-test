@@ -6,6 +6,7 @@ runs:
     - run: |
         git config user.name "php-docblocker"
         git config user.email php-docblocker@brayfield.co.uk
+      shell: bash
 
     - uses: actions/setup-node@v1
       with:
@@ -19,3 +20,4 @@ runs:
         key: ${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
 
     - run: npm install
+      shell: bash
