@@ -12,11 +12,22 @@ runs:
       with:
         node-version: 14.x
 
+    - id: npm-cache-dir
+      run: echo "::set-output name=npm_cache_dir::$(npm config get cache)"
+      shell: bash
+
     - uses: actions/cache@v2
       env:
         cache-name: vscode
       with:
         path: ~/.vscode-test/
+        key: ${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
+
+    - uses: actions/cache@v2
+      env:
+        cache-name: npm-cache
+      with:
+        path: ${{ steps.npm-cache-dir.outputs.npm_cache_dir }}
         key: ${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
 
     - run: npm install
