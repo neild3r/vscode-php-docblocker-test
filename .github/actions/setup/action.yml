@@ -31,4 +31,6 @@ runs:
         key: ${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
 
     - run: npm install
+      env:
+        playwright_browsers_path: ${{ steps.npm-cache-dir.outputs.npm_cache_dir }}/pw-browsers
       shell: bash
